@@ -1,0 +1,25 @@
+<div class="row">
+    <h4>Résultat</h4>
+
+    <p ng-bind-html="text">
+    </p>
+    <a class="btn btn-primary" ng-click="update('{start}')" href="">Perso</a>
+    <a class="btn btn-primary" ng-click="update('{physical_detail}')" href="">détail physique</a>
+    <a class="btn btn-primary" ng-click="update('{oral_detail}')" href="">détail oral</a>
+    <a class="btn btn-primary" ng-click="update('{start_idea}')" href="">Situation</a>
+    <a class="btn btn-primary" ng-click="update('{impro_muse}')" href="">Impro</a>
+    <a class="btn btn-primary" ng-click="update('{action}')" href="">Action</a>
+    <a class="btn btn-primary" ng-click="update('{threat}')" href="">Menace</a>
+    <a class="btn btn-primary" ng-click="update('{story_part}')" href="">Il était une fois...</a>
+</div>
+<div class="row">
+    <label ng-repeat="elt in context_choices">
+        <input
+                type="checkbox"
+                name="context[]"
+                value="{{elt}}"
+                ng-checked="context.indexOf(elt) > -1"
+                ng-click="toggleSelection(elt)"
+                > {{elt}}
+    </label>
+</div>
