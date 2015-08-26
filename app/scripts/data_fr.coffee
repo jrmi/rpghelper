@@ -248,7 +248,8 @@ angular.module('rpghelperApp').run (generator) ->
   generator.add 'oral_detail', "souvent à des gens absents"
   generator.add 'oral_detail', "en rôtant régulierement"
   generator.add 'oral_detail', "en soupirant régulièrement"
-  generator.add 'oral_detail', "en tordant la bouche"  #generator.add 'oral_detail', "avec un faux sourire permanent"
+  generator.add 'oral_detail', "en tordant la bouche"  
+  #generator.add 'oral_detail', "avec un faux sourire permanent"
   #generator.add 'oral_detail', "en se léchant les lêvres"
 
   generator.add 'word_repeat', "Ok !!!"
@@ -270,14 +271,15 @@ angular.module('rpghelperApp').run (generator) ->
   generator.add 'people', "un gourou"
   generator.add 'people', "un chef d'état"
   generator.add 'people', "un top model"
-  generator.add 'people', "un dealer"
+  generator.add 'people', "un dealer", null, ['!fantasy']
   generator.add 'people', "un flic"
-  generator.add 'people', "un milliardaire"
+  generator.add 'people', "une personne riche"
   generator.add 'people', "un acteur"
-  generator.add 'people', "un corporatiste"
+  generator.add 'people', "un corporatiste", null, ['cyber']
+  generator.add 'people', "un fixer", null, ['cyber']
   generator.add 'people', "un médecin"
   generator.add 'people', "un journaliste"
-  generator.add 'people', "un mandiant"
+  generator.add 'people', "un mendiant"
 
   generator.add 'people_adj', "fou"
   generator.add 'people_adj', "machiavélique"
@@ -308,25 +310,32 @@ angular.module('rpghelperApp').run (generator) ->
 
   generator.add 'place', "une prison"
   generator.add 'place', "un laboratoire"
+  generator.add 'place', "un hôtel", null, ['!fantasy'] 
   generator.add 'place', "une secte"
+  generator.add 'place', "une université"
+  generator.add 'place', "une école"
   generator.add 'place', "une morque"
-  generator.add 'place', "des égouts"
-  generator.add 'place', "un supermarché"
-  generator.add 'place', "un club privé"
-  generator.add 'place', "un casino"
-  generator.add 'place', "un cinéma"
-  generator.add 'place', "une centrale nucléaire"
-  generator.add 'place', "une base militaire"
+  generator.add 'place', "un égout", null, ['!fantasy']
+  generator.add 'place', "un supermarché", null, ['!fantasy']
+  generator.add 'place', "un club privé", null, ['!fantasy']
+  generator.add 'place', "un casino", null, ['!fantasy']
+  generator.add 'place', "un cinéma", null, ['!fantasy']
+  generator.add 'place', "une centrale nucléaire", null, ['!fantasy']
+  generator.add 'place', "une base militaire", null, ['!fantasy']
   generator.add 'place', "un asile psychiatrique"
   generator.add 'place', "une église"
-  generator.add 'place', "une usine"
+  generator.add 'place', "une forêt"
+  generator.add 'place', "un château"
+  generator.add 'place', "une usine", null, ['!fantasy']
 
-  generator.add 'place_adj', "illégale"
+  generator.add 'place_adj', "illégal(e)"
   generator.add 'place_adj', "clandestin(e)"
-  generator.add 'place_adj', "hanté(e)"
+  generator.add 'place_adj', "hanté(e)", null, ['fantasy']
   generator.add 'place_adj', "détruit(e)"
   generator.add 'place_adj', "désert(e)"
   generator.add 'place_adj', "abandoné(e)"
+  generator.add 'place_adj', "caché(e)"
+  generator.add 'place_adj', "piégé(e)"
   generator.add 'place_adj', "", 2
 
   generator.add 'impro_muse', "{when}"
@@ -461,7 +470,16 @@ angular.module('rpghelperApp').run (generator) ->
   generator.add 'afflictions', 'une innondation'
   generator.add 'afflictions', 'un orage'
   generator.add 'afflictions', 'une sècheresse'
-  generator.add 'afflictions', 'une invasion de ...'
+  generator.add 'afflictions', 'une invasion de {invade_type}'
+
+  generator.add 'invade_type', 'sauterelles'
+  generator.add 'invade_type', 'mouches'
+  generator.add 'invade_type', 'serpents'
+  generator.add 'invade_type', 'larves'
+  generator.add 'invade_type', 'grenouilles'
+  generator.add 'invade_type', 'fourmis'
+  generator.add 'invade_type', 'chat'
+  generator.add 'invade_type', 'chien'
 
   generator.add 'grotesque', 'un cannibal'
   generator.add 'grotesque', 'un mutant'
@@ -478,40 +496,77 @@ angular.module('rpghelperApp').run (generator) ->
   generator.add 'landscape', 'une forteresse'
   generator.add 'landscape', 'un effondrement'
 
-  generator.add 'story_part', '{story_place}'
-  generator.add 'story_part', '{story_people}'
-  generator.add 'story_part', '{story_event}'
-  generator.add 'story_part', '{story_object}'
-  generator.add 'story_part', '{story_feeling}'
+  # Story part generator
+  generator.add 'story_part', 'Lieu : {story_place}'
+  generator.add 'story_part', 'Personne : {story_people}'
+  generator.add 'story_part', 'Evénement : {story_event}'
+  generator.add 'story_part', 'Objet : {story_object}'
+  generator.add 'story_part', 'Sensation : {story_feeling}'
 
-  generator.add 'story_place', 'Un escalier {story_adj_ojb}'
-  generator.add 'story_place', 'Un chambre {story_adj_ojb}'
-  generator.add 'story_place', '{place} {place_adj}'
+  generator.add 'story_place', 'un escalier {story_adj_ojb}'
+  generator.add 'story_place', 'une chambre {story_adj_ojb}'
+  generator.add 'story_place', 'un train {story_adj_ojb}'
+  generator.add 'story_place', 'au sol'
+  generator.add 'story_place', 'en l\'air'
+  generator.add 'story_place', 'sous terre'
+  generator.add 'story_place', '{place} {place_adj}', 2
+  generator.add 'story_place', '{landscape}', 2
 
-  generator.add 'story_people', '{people}', 6
+  generator.add 'story_people', '{people}'
+  generator.add 'story_people', '{grotesque}'
+  generator.add 'story_people', '{brutes}'
+  generator.add 'story_people', '{warlord}'
 
-  generator.add 'story_event', 'Une poursuite'
-  generator.add 'story_event', 'Une séduction'
-  generator.add 'story_event', 'Une chute'
-  generator.add 'story_event', 'Une vengeance'
-  generator.add 'story_event', 'Une usurpation d\'identité'
+  generator.add 'story_event', 'une poursuite'
+  generator.add 'story_event', 'une séduction'
+  generator.add 'story_event', 'une chute'
+  generator.add 'story_event', 'une usurpation d\'identité'
+  generator.add 'story_event', 'une rencontre innatendue'
+  generator.add 'story_event', 'une rencontre inéspérée'
+  generator.add 'story_event', 'une erreur sur la personne'
+  generator.add 'story_event', 'un orage'
+  generator.add 'story_event', 'une pluie'
+  generator.add 'story_event', 'une tempête'
+  generator.add 'story_event', 'un saut temporel', null, ['sci-fi']
+  generator.add 'story_event', 'une embuscade'
+  generator.add 'story_event', 'une bonne surprise'
+  generator.add 'story_event', 'une mauvaise surprise'
+  generator.add 'story_event', 'un cri horrible'
+  generator.add 'story_event', 'affliction', 3
 
-  generator.add 'story_object', 'Un livre {story_adj_ojb}'
-  generator.add 'story_object', 'Un dé {story_adj_ojb}'
-  generator.add 'story_object', 'Une chaise {story_adj_ojb}'
+  generator.add 'story_object', '{story_obj} {story_adj_ojb}'
 
-  generator.add 'story_feeling', 'Une odeur {story_adj_feel}'
-  generator.add 'story_feeling', 'Il fait très chaud'
-  generator.add 'story_feeling', 'Il fait très froid'
+  generator.add 'story_obj', 'un livre'
+  generator.add 'story_obj', 'un dé'
+  generator.add 'story_obj', 'une chaise'
+  generator.add 'story_obj', 'un ordinateur'
+  generator.add 'story_obj', 'un sac'
+  generator.add 'story_obj', 'un stylo'
+  generator.add 'story_obj', 'une arme'
+  generator.add 'story_obj', 'un outil'
+  generator.add 'story_obj', 'une paire de chaussure'
+  generator.add 'story_obj', 'un véhicule'
+  generator.add 'story_obj', 'une paire de lunette'
+  generator.add 'story_obj', 'une montre'
+  generator.add 'story_obj', 'une carte géographique'
 
-
-  generator.add 'story_adj_ojb', 'cassé'
+  generator.add 'story_adj_ojb', 'cassé(e)'
   generator.add 'story_adj_ojb', 'magique'
-  generator.add 'story_adj_ojb', 'maudit'
-  generator.add 'story_adj_ojb', 'dangereux'
+  generator.add 'story_adj_ojb', 'maudit(e)'
+  generator.add 'story_adj_ojb', 'dangereux(se)'
+  generator.add 'story_adj_ojb', 'piégé(e)'
 
+  generator.add 'story_feeling', 'une odeur horrible'
+  generator.add 'story_feeling', 'une odeur agréable'
+  generator.add 'story_feeling', 'il fait très chaud'
+  generator.add 'story_feeling', 'il fait très froid'
+  generator.add 'story_feeling', 'le sommeil'
+  generator.add 'story_feeling', 'la fatigue'
+  generator.add 'story_feeling', '{motivation}'
 
   generator.add 'story_adj_feel', 'ignoble'
   generator.add 'story_adj_feel', 'agréable'
+  generator.add 'story_adj_feel', 'horrible'
+  generator.add 'story_adj_feel', 'étonnant(e)'
 
 

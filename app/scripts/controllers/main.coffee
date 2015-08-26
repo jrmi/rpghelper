@@ -10,7 +10,7 @@
 angular.module('rpghelperApp')
   .controller 'MainCtrl', ($scope, generator) ->
 
-    $scope.context_choices = ['woman', 'man', 'fantasy']
+    $scope.context_choices = ['woman', 'man', 'fantasy', 'cyber']
 
     $scope.toggleSelection = (elt) ->
       idx = $scope.context.indexOf(elt)
@@ -21,8 +21,14 @@ angular.module('rpghelperApp')
       else
         $scope.context.push(elt)
 
-    $scope.text = '...'
+    $scope.text = '---'
     $scope.context = []
+    $scope.generated = []
 
     $scope.update = (domain) ->
-      $scope.text = generator.resolve(domain, $scope.context)
+      #$scope.text = generator.resolve(domain, $scope.context)
+      $scope.generated.unshift(generator.resolve(domain, $scope.context))
+
+    $scope.remove = (index) ->
+      $scope.generated.slice(index, 1)
+

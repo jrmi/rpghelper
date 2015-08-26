@@ -1,8 +1,6 @@
 <div class="row">
     <h4>Résultat</h4>
 
-    <p ng-bind-html="text">
-    </p>
     <a class="btn btn-primary" ng-click="update('{start}')" href="">Perso</a>
     <a class="btn btn-primary" ng-click="update('{physical_detail}')" href="">détail physique</a>
     <a class="btn btn-primary" ng-click="update('{oral_detail}')" href="">détail oral</a>
@@ -23,3 +21,9 @@
                 > {{elt}}
     </label>
 </div>
+<ul class="row">
+    <li ng-repeat="g in generated">
+        <p ng-bind-html="g">
+        </p>
+    </li>
+</ul>
